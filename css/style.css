@@ -20,7 +20,7 @@ body {
   display: flex; align-items: center; justify-content: center; gap: 8px;
 }
 .season-picker label { color: #8a8574; }
-#season-select {
+#phase-select {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
   color: #5c5645; background: transparent; border: none;
@@ -32,7 +32,7 @@ body {
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
 }
-#season-select:focus {
+#phase-select:focus {
   outline: none; border-bottom-color: var(--accent, #7a3b30); color: var(--accent, #7a3b30);
 }
 
@@ -61,8 +61,13 @@ body {
 }
 .title { font-size: 0.95rem; margin: 4px 0 3px; line-height: 1.35; }
 
-/* Seasonal accent — swaps the rust tone the tracker uses for a per-season hue */
-body[data-season="spring"] { --accent: #5a7a4a; }
-body[data-season="summer"] { --accent: #b8863b; }
-body[data-season="autumn"] { --accent: #a2532a; }
-body[data-season="winter"] { --accent: #4a6b7a; }
+/* Per-phase accent — swaps the rust tone the tracker uses for a per-phase hue */
+body[data-phase="bleak-midwinter"] { --accent: #3f5566; }
+body[data-phase="late-winter"] { --accent: #5c7a8a; }
+body[data-phase="early-spring"] { --accent: #5a7a4a; }
+body[data-phase="warm-up"] { --accent: #b8863b; }
+body[data-phase="high-summer"] { --accent: #c1652c; }
+body[data-phase="early-autumn"] { --accent: #a2532a; }
+body[data-phase="late-autumn"] { --accent: #6b4a30; }
+body[data-phase="festive"] { --accent: #7a3b30; }
+body[data-phase="gooch"] { --accent: #8a8574; }
