@@ -32,8 +32,12 @@ const SEASON_IMAGES = {
   ],
 };
 
+const SEASON_LABELS = { spring: "Spring", summer: "Summer", autumn: "Autumn", winter: "Winter" };
+
 const gallery = document.getElementById("gallery");
 const select = document.getElementById("season-select");
+const sectionLabel = document.getElementById("section-label");
+const metaLine = document.getElementById("meta-line");
 
 function renderGallery(season) {
   const images = SEASON_IMAGES[season] || [];
@@ -41,7 +45,7 @@ function renderGallery(season) {
 
   if (images.length === 0) {
     const empty = document.createElement("p");
-    empty.className = "empty-state";
+    empty.className = "empty";
     empty.textContent = "No images yet for this season.";
     gallery.appendChild(empty);
     return;
@@ -49,20 +53,27 @@ function renderGallery(season) {
 
   const fragment = document.createDocumentFragment();
   images.forEach(({ src, alt, caption }) => {
-    const figure = document.createElement("figure");
-    figure.className = "gallery-card";
+    const card = document.createElement("div");
+    card.className = "card";
 
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = alt;
-    img.loading = "lazy";
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+    thumb.style.backgroundImage = `url('${src}')`;
+    thumb.setAttribute("role", "img");
+    thumb.setAttribute("aria-label", alt);
 
-    const figcaption = document.createElement("figcaption");
-    figcaption.textContent = caption;
+    const source = document.createElement("div");
+    source.className = "source";
+    source.textContent = SEASON_LABELS[season];
 
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
-    fragment.appendChild(figure);
+    const title = document.createElement("div");
+    title.className = "title";
+    title.textContent = caption;
+
+    card.appendChild(thumb);
+    card.appendChild(source);
+    card.appendChild(title);
+    fragment.appendChild(card);
   });
 
   gallery.appendChild(fragment);
@@ -71,6 +82,9 @@ function renderGallery(season) {
 function setSeason(season) {
   document.body.dataset.season = season;
   select.value = season;
+  sectionLabel.textContent = SEASON_LABELS[season];
+  const count = (SEASON_IMAGES[season] || []).length;
+  metaLine.textContent = `${SEASON_LABELS[season]} · ${count} image${count === 1 ? "" : "s"}`;
   renderGallery(season);
   try {
     localStorage.setItem("moodboard-season", season);
