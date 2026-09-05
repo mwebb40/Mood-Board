@@ -53,7 +53,7 @@ function parseFilename(filename) {
   const caption = titleCase(slug) || "Untitled";
 
   let added = null;
-  if (match) {
+  if (match && Number(match[1]) > 0) {
     const raw = match[1];
     const ms = raw.length <= 10 ? Number(raw) * 1000 : Number(raw);
     const date = new Date(ms);
