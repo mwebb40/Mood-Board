@@ -1,0 +1,68 @@
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  max-width: 900px; margin: 0 auto; padding: 48px 20px 80px;
+  background: #f7f4ec; color: #2b2a25;
+  transition: color 0.4s ease;
+}
+
+.masthead { text-align: center; margin-bottom: 40px; }
+.masthead h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;
+  font-size: 2.1rem; letter-spacing: 0.03em; margin: 0; text-transform: uppercase;
+}
+.rule-thin { width: 42px; height: 1px; background: var(--accent, #8a7a53); margin: 14px auto; transition: background 0.4s ease; }
+.meta { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: #8a8574; }
+.meta + .meta { margin-top: 10px; }
+
+.season-picker {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.season-picker label { color: #8a8574; }
+#season-select {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #5c5645; background: transparent; border: none;
+  border-bottom: 1px solid #ddd6c2; padding: 2px 18px 4px 2px;
+  cursor: pointer; appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #a39c85 50%),
+                     linear-gradient(135deg, #a39c85 50%, transparent 50%);
+  background-position: right 6px top 55%, right 0 top 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+#season-select:focus {
+  outline: none; border-bottom-color: var(--accent, #7a3b30); color: var(--accent, #7a3b30);
+}
+
+.section-label {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--accent, #5c5645); margin: 0 0 18px; text-align: center;
+  transition: color 0.4s ease;
+}
+.section-label.muted { color: #a39c85; }
+.empty { font-style: italic; color: #a39c85; font-size: 0.95rem; margin: 0 0 24px; text-align: center; }
+.rule { height: 1px; background: #ddd6c2; margin: 8px 0 40px; }
+
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  column-gap: 20px; row-gap: 32px; margin-bottom: 8px;
+}
+.card { position: relative; }
+.thumb {
+  aspect-ratio: 4/5; background: #eae5d6 center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px; color: #a39c85; font-size: 26px; overflow: hidden;
+}
+.source {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent, #8a8574); transition: color 0.4s ease;
+}
+.title { font-size: 0.95rem; margin: 4px 0 3px; line-height: 1.35; }
+
+/* Seasonal accent — swaps the rust tone the tracker uses for a per-season hue */
+body[data-season="spring"] { --accent: #5a7a4a; }
+body[data-season="summer"] { --accent: #b8863b; }
+body[data-season="autumn"] { --accent: #a2532a; }
+body[data-season="winter"] { --accent: #4a6b7a; }
